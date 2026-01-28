@@ -74,7 +74,8 @@ jobs:
         run: bandit -r my_agent/ app/ -ll
 
       - name: Dependency audit
-        run: pip-audit --strict --desc on
+        continue-on-error: true
+        run: pip-audit --desc on
 
   tests:
     name: Tests

@@ -5,16 +5,17 @@ This module provides a chat-based UI for interacting with the
 ADK-powered video games assistant agent.
 """
 
-import sys
 import os
+import sys
 
 # Ensure project root is in Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import streamlit as st
-import asyncio
-import uuid
-from dotenv import load_dotenv
+import asyncio  # noqa: E402
+import uuid  # noqa: E402
+
+import streamlit as st  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
 
 # Load environment variables
 load_dotenv()
@@ -34,7 +35,7 @@ try:
 except ImportError:
     pass  # Tracing not available
 
-from app.adk_service import get_adk_service
+from app.adk_service import get_adk_service  # noqa: E402
 
 
 def initialize_session_state():

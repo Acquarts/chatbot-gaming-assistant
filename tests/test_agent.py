@@ -2,8 +2,6 @@
 Tests for the AI Video Games Assistant agent.
 """
 
-import pytest
-
 
 class TestAgentStructure:
     """Tests for verifying agent structure and configuration."""

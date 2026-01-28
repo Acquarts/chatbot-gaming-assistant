@@ -1,10 +1,10 @@
+from datetime import date
+
 from google.adk.agents import LlmAgent
-from google.adk.tools import agent_tool
+from google.adk.tools import agent_tool, url_context
 from google.adk.tools.function_tool import FunctionTool
 from google.adk.tools.google_search_tool import GoogleSearchTool
-from google.adk.tools import url_context
 
-from datetime import date
 from my_agent.youtube_tool import search_youtube
 
 CURRENT_DATE = date.today().isoformat()

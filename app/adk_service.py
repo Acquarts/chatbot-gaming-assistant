@@ -5,8 +5,9 @@ This module provides session management for the ADK agent,
 ensuring persistence across Streamlit reruns.
 """
 
-import asyncio
-from typing import Optional, AsyncGenerator
+from collections.abc import AsyncGenerator
+from typing import Optional
+
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService, Session
 from google.genai import types

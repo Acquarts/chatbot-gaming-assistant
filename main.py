@@ -6,18 +6,19 @@ and optionally the web interface.
 """
 
 import os
+
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
 # Initialize tracing before importing ADK components
-from observability.tracing import setup_tracing
+from observability.tracing import setup_tracing  # noqa: E402
 
 setup_tracing()
 
-from fastapi import FastAPI
-from google.adk.cli.fast_api import get_fast_api_app
+from fastapi import FastAPI  # noqa: E402
+from google.adk.cli.fast_api import get_fast_api_app  # noqa: E402
 
 # Configuration
 AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
