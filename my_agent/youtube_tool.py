@@ -8,7 +8,6 @@ that GoogleSearchTool's grounding does not expose locally.
 import os
 from googleapiclient.discovery import build
 
-
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 
@@ -52,13 +51,15 @@ def search_youtube(
         for item in response.get("items", []):
             video_id = item["id"]["videoId"]
             snippet = item["snippet"]
-            results.append({
-                "title": snippet["title"],
-                "channel": snippet["channelTitle"],
-                "url": f"https://www.youtube.com/watch?v={video_id}",
-                "published_at": snippet["publishedAt"],
-                "description": snippet["description"][:200],
-            })
+            results.append(
+                {
+                    "title": snippet["title"],
+                    "channel": snippet["channelTitle"],
+                    "url": f"https://www.youtube.com/watch?v={video_id}",
+                    "published_at": snippet["publishedAt"],
+                    "description": snippet["description"][:200],
+                }
+            )
 
         if not results:
             return [{"message": f"No videos found for: {query}"}]

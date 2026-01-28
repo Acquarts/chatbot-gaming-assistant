@@ -40,9 +40,7 @@ class ADKService:
             self._sessions: dict[str, Session] = {}
             ADKService._initialized = True
 
-    async def get_or_create_session(
-        self, user_id: str, session_id: str
-    ) -> Session:
+    async def get_or_create_session(self, user_id: str, session_id: str) -> Session:
         """Get existing session or create new one."""
         key = f"{user_id}:{session_id}"
 
@@ -67,9 +65,7 @@ class ADKService:
         """
         await self.get_or_create_session(user_id, session_id)
 
-        user_content = types.Content(
-            role="user", parts=[types.Part(text=message)]
-        )
+        user_content = types.Content(role="user", parts=[types.Part(text=message)])
 
         async for event in self._runner.run_async(
             user_id=user_id, session_id=session_id, new_message=user_content

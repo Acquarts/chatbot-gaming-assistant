@@ -31,6 +31,7 @@ st.set_page_config(
 # Initialize observability
 try:
     from observability.tracing import setup_tracing
+
     setup_tracing()
 except ImportError:
     pass  # Tracing not available
