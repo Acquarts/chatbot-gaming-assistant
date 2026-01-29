@@ -2,7 +2,7 @@
 Arize AX Tracing Integration
 
 This module configures OpenTelemetry-based tracing for the ADK agent,
-enabling observability through Arize AX.
+enabling observability through Arize AX (EU endpoint).
 """
 
 import os
@@ -32,20 +32,15 @@ def setup_tracing(project_name: str | None = None) -> None:
         print("[Tracing] ARIZE_SPACE_ID and ARIZE_API_KEY not set, skipping.")
         return
 
-    print(
-        f"[Tracing] space_id length={len(space_id)}, "
-        f"api_key starts with={api_key[:6]}..."
-    )
-
     try:
-        from arize.otel import register
+        from arize.otel import Endpoint, register
         from openinference.instrumentation.google_adk import GoogleADKInstrumentor
 
         tracer_provider = register(
             space_id=space_id,
             api_key=api_key,
             project_name=project_name,
-            endpoint="https://otlp.arize.com/v1",
+            endpoint=Endpoint.ARIZE_EUROPE,
         )
 
         GoogleADKInstrumentor().instrument(tracer_provider=tracer_provider)
