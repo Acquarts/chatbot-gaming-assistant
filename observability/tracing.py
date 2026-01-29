@@ -32,8 +32,10 @@ def setup_tracing(project_name: str | None = None) -> None:
         print("[Tracing] ARIZE_SPACE_ID and ARIZE_API_KEY not set, skipping.")
         return
 
-    print(f"[Tracing] space_id length={len(space_id)}, "
-          f"api_key starts with={api_key[:6]}...")
+    print(
+        f"[Tracing] space_id length={len(space_id)}, "
+        f"api_key starts with={api_key[:6]}..."
+    )
 
     try:
         from arize.otel import Transport, register
@@ -54,4 +56,5 @@ def setup_tracing(project_name: str | None = None) -> None:
     except Exception as e:
         print(f"[Tracing] Failed to initialize Arize AX: {e}")
         import traceback
+
         traceback.print_exc()

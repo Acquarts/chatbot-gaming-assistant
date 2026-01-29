@@ -36,6 +36,7 @@ EXTRA_REQUIREMENTS = [
 # DEPLOYMENT - DO NOT MODIFY THIS SECTION
 # ============================================================================
 
+
 def main():
     print("=" * 70)
     print("ADK AGENT DEPLOYMENT")
@@ -46,23 +47,20 @@ def main():
     print(f"Region: {LOCATION}")
     print(f"Bucket: {STAGING_BUCKET}")
 
-    vertexai.init(
-        project=PROJECT_ID,
-        location=LOCATION,
-        staging_bucket=STAGING_BUCKET
-    )
+    vertexai.init(project=PROJECT_ID, location=LOCATION, staging_bucket=STAGING_BUCKET)
 
     # Import the agent
     print(f"\nImporting agent from: {AGENT_FOLDER}")
     try:
         # Dynamic import
         import importlib
+
         agent_module = importlib.import_module(f"{AGENT_FOLDER}.agent")
         root_agent = agent_module.root_agent
 
         print(f"Agent imported: {root_agent.name}")
         print(f"Model: {root_agent.model}")
-        if hasattr(root_agent, 'tools') and root_agent.tools:
+        if hasattr(root_agent, "tools") and root_agent.tools:
             print(f"Tools: {len(root_agent.tools)} tools")
     except Exception as e:
         print(f"Error importing agent: {e}")
@@ -108,7 +106,7 @@ def main():
         print(f"   {remote_app.resource_name}")
 
         # Extract resource ID for URL
-        resource_id = remote_app.resource_name.split('/')[-1]
+        resource_id = remote_app.resource_name.split("/")[-1]
         console_url = (
             f"https://console.cloud.google.com/vertex-ai/agents/"
             f"locations/{LOCATION}/agent-engines/{resource_id}"
@@ -140,6 +138,7 @@ def main():
         print("2. Verify credentials: gcloud auth application-default login")
         print("3. Check logs in Cloud Console")
         import traceback
+
         traceback.print_exc()
 
 
