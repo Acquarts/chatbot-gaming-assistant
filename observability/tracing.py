@@ -36,8 +36,7 @@ def setup_tracing(project_name: str | None = None) -> None:
           f"api_key starts with={api_key[:6]}...")
 
     try:
-        from arize.otel import register
-        from arize.otel import Transport
+        from arize.otel import Transport, register
         from openinference.instrumentation.google_adk import GoogleADKInstrumentor
 
         tracer_provider = register(

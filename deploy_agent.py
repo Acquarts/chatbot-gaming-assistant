@@ -66,14 +66,14 @@ def main():
             print(f"Tools: {len(root_agent.tools)} tools")
     except Exception as e:
         print(f"Error importing agent: {e}")
-        print(f"\nVerify that:")
+        print("\nVerify that:")
         print(f"1. The folder '{AGENT_FOLDER}' exists")
         print(f"2. The file '{AGENT_FOLDER}/agent.py' exists")
         print(f"3. The file '{AGENT_FOLDER}/__init__.py' exports 'root_agent'")
         return
 
     # Create AdkApp wrapper
-    print(f"\nCreating AdkApp...")
+    print("\nCreating AdkApp...")
     app = AdkApp(agent=root_agent)
 
     # Prepare requirements
@@ -81,12 +81,12 @@ def main():
         "google-cloud-aiplatform[adk,agent_engines]>=1.132.0",
     ] + EXTRA_REQUIREMENTS
 
-    print(f"\nRequirements:")
+    print("\nRequirements:")
     for req in requirements:
         print(f"   - {req}")
 
     # Deploy to Agent Engine
-    print(f"\nDeploying to Agent Engine...")
+    print("\nDeploying to Agent Engine...")
     print("This may take 2-5 minutes...")
 
     try:
@@ -104,7 +104,7 @@ def main():
         print("DEPLOYMENT SUCCESSFUL!")
         print("=" * 70)
 
-        print(f"\nResource Name:")
+        print("\nResource Name:")
         print(f"   {remote_app.resource_name}")
 
         # Extract resource ID for URL
@@ -115,23 +115,23 @@ def main():
             f"?project={PROJECT_ID}"
         )
 
-        print(f"\nView in Google Cloud Console:")
+        print("\nView in Google Cloud Console:")
         print(f"   {console_url}")
 
-        print(f"\nTo use in another script:")
-        print(f"   from vertexai import agent_engines")
+        print("\nTo use in another script:")
+        print("   from vertexai import agent_engines")
         print(f"   remote_app = agent_engines.get('{remote_app.resource_name}')")
 
-        print(f"\nNext step:")
-        print(f"   1. Go to the URL above to test the agent in the UI")
-        print(f"   2. Or use the test_agent.py script for programmatic testing")
+        print("\nNext step:")
+        print("   1. Go to the URL above to test the agent in the UI")
+        print("   2. Or use the test_agent.py script for programmatic testing")
 
         print("\n" + "=" * 70)
 
         # Save resource name for testing
         with open("agent_resource_name.txt", "w") as f:
             f.write(remote_app.resource_name)
-        print(f"\nResource name saved to: agent_resource_name.txt")
+        print("\nResource name saved to: agent_resource_name.txt")
 
     except Exception as e:
         print(f"\nDeployment failed: {e}")
